@@ -20,14 +20,27 @@
 ## variable InverseMatrix
 
 makeCacheMatrix <- function(x = matrix()) {
+
+    ## Set the value of the inverse matrix to NULL
     inverseMatrix <- NULL
+    
+    ## Set or change the cached matrix and
+    ## set the value of the inverse matrix to NU
     set <- function(y) {
         x <<- y
         inverseMatrix <<- NULL
     }
+    
+    ## Retrieve the cached matrix
     get <- function() x
+    
+    ## Set the cached matrix inverse
     setInverseMatrix <- function(y) inverseMatrix <<- y
+    
+    ## Retrieve the cached matrix inverse
     getInverseMatrix <- function() inverseMatrix
+    
+    # Return internal function list
     list(set = set, get = get,
          setInverseMatrix = setInverseMatrix,
          getInverseMatrix = getInverseMatrix)
@@ -40,6 +53,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ## and save it and return this newly calculated inverse matrix.
 
 cacheSolve <- function(x, ...) {
+    
+    ## Check the cache; if not null, the cached inverse can be returned
     im <- x$getInverseMatrix()
     if(!is.null(im)) {
         message("getting cached data")
